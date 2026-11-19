@@ -2,7 +2,7 @@
 # requires DOCKER_BUILDKIT=1 set when running docker build
 # checkov:skip=CKV_DOCKER_2: no healthcheck (yet)
 # checkov:skip=CKV_DOCKER_3: no user (yet)
-FROM php:8.5.12-fpm-alpine@sha256:951fb5b1780219b81d5daffa4cebef8e0077c537f3893d9790a5dfcd66ca334d
+FROM php:8.6.0-fpm-alpine@sha256:9f5b1d18bbbfc65a58bcf5b36e2e055f2443fc96985cfbb940a2d19c2bdf49c8
 
 ARG BUILD_DATE
 ARG BUILD_VERSION
@@ -12,8 +12,8 @@ ARG VCS_BRANCH
 
 # See http://label-schema.org/rc1/ and https://microbadger.com/labels
 LABEL maintainer="Jan Wagner <waja@cyconet.org>" \
-    org.label-schema.name="PHP 8.5 - FastCGI Process Manager" \
-    org.label-schema.description="PHP-FPM 8.5 (with some more extensions installed)" \
+    org.label-schema.name="PHP 8.6 - FastCGI Process Manager" \
+    org.label-schema.description="PHP-FPM 8.6 (with some more extensions installed)" \
     org.label-schema.vendor="Cyconet" \
     org.label-schema.schema-version="1.0" \
     org.label-schema.build-date="${BUILD_DATE:-unknown}" \
@@ -21,7 +21,7 @@ LABEL maintainer="Jan Wagner <waja@cyconet.org>" \
     org.label-schema.vcs-url="${VCS_URL:-unknown}" \
     org.label-schema.vcs-ref="${VCS_REF:-unknown}" \
     org.label-schema.vcs-branch="${VCS_BRANCH:-unknown}" \
-    org.opencontainers.image.source="https://github.com/waja/docker-php85-fpm"
+    org.opencontainers.image.source="https://github.com/waja/docker-php86-fpm"
 
 ENV EXT_DEPS \
   freetype \
