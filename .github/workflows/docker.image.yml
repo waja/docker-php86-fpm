@@ -130,15 +130,15 @@ jobs:
           docker buildx imagetools inspect localhost:5000/foobar/${{ env.IMAGE_NAME }}
       - name: Test the Docker image
         run: |
-          CONTAINER_OUTPUT=$(docker run --rm localhost:5000/foobar/${{ env.IMAGE_NAME }} -v 2>&1 | grep -E '^PHP\s8\.5')
+          CONTAINER_OUTPUT=$(docker run --rm localhost:5000/foobar/${{ env.IMAGE_NAME }} -v 2>&1 | grep -E '^PHP\s8\.6')
           echo "Container output: $CONTAINER_OUTPUT"
           echo "Container output (quoted): '$CONTAINER_OUTPUT'"
 
           TEST_STRING=$(echo "${CONTAINER_OUTPUT}" | head -1 | cut -d'.' -f3 --complement)
           echo "Extracted test string: '$TEST_STRING'"
 
-          if ! [ "${TEST_STRING}" = "PHP 8.5" ]; then
-            echo "ERROR: Expected 'PHP 8.5' but got '$TEST_STRING'"
+          if ! [ "${TEST_STRING}" = "PHP 8.6" ]; then
+            echo "ERROR: Expected 'PHP 8.6' but got '$TEST_STRING'"
             exit 1
           fi
       - name: Test composer
@@ -407,7 +407,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
           file: ./Dockerfile
-          platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64,linux/s390x
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ${{ steps.prep.outputs.tags }}
